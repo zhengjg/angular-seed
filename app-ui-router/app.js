@@ -9,5 +9,5 @@ angular.module('myApp', [
 ]).
 config(['$routeProvider','$locationProvider', function($routeProvider,$locationProvider) {
   $routeProvider.otherwise({redirectTo: '/index.html'});
-  //$locationProvider.html5Mode(true);
+  $locationProvider.html5Mode(true);
 }]);

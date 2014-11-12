@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app>
 	<head>
 		<meta charset="utf-8">
 
@@ -11,15 +11,20 @@
 		<meta name="description" content="">
 		<meta name="author" content="zhengjinguang">
 
-		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
 		<link rel="shortcut icon" href="/favicon.ico">
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+		<style>
+			.ng-invalid-required {
+				/*border-color: red;*/
+			}
+		</style>
 	</head>
 
 	<body>
-		<div>
+		<div ng-controller="formValidate">
 			<header>
 				<h1>formValidate1</h1>
 			</header>
@@ -31,8 +36,36 @@
 					<a href="/contact">Contact</a>
 				</p>
 			</nav>
+			<div ng-controller="InvoiceCntl">
+				<b>Invoice:</b>
+				<br>
+				<br>
+				<table>
+					<tr>
+						<td>Quantity</td><td>Cost</td>
+					</tr>
+					<tr>
+						<td>
+						<input type="integer" min="0" ng-model="qty" required >
+						</td>
+						<td>
+						<input type="number" ng-model="cost" required >
+						</td>
+					</tr>
+				</table>
+				<hr>
+				<b>Total:</b> {{qty * cost | currency}}
+			</div>
+			<br />
 
 			<div>
+				<form  >
+					<input type="number" min="0" ng-model="qty" required name="qty" />
+					<br />
+					<input type="number"  ng-model="cost" required name="cost" />
+
+				</form>
+				<b>Total:</b>{{qty*cost}}
 
 			</div>
 
@@ -42,5 +75,21 @@
 				</p>
 			</footer>
 		</div>
+		<script type="text/javascript" src="lib/jquery-1.10.1.js"></script>
+		<script type="text/javascript" src="lib/angular.js"></script>
+		<script type="text/javascript">
+			formValidate["$scope"];
+			function formValidate($scope) {
+				$scope.qty = 1;
+				$scope.cost = 19.95;
+			}
+
+			InvoiceCntl["$scope"];
+			function InvoiceCntl($scope) {
+				$scope.qty = 1;
+				$scope.cost = 19.95;
+			}
+		</script>
+
 	</body>
 </html>
