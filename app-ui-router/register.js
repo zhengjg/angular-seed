@@ -1,0 +1,24 @@
+angular.module("formApp",["ngAnimate","ui.router"])
+// 配置我们的路由
+.config(function($stateProvider,$urlRouterProvider){
+	$stateProvider.state("form",{
+		url:"/form",
+		templateUrl:"htmls/form/form.html",
+		controller:"formController"
+	}).state("form.profile",{
+		url:"/profile",
+		templateUrl:"htmls/form/form-profile.html"
+	}).state("form.interests",{
+		url:"/interests",
+		templateUrl:"htmls/form/form-interests.html"
+	}).state("form.payment",{
+		url:"/payment",
+		templateUrl:"htmls/form/form-payment.html"
+	});
+	$urlRouterProvider.otherwise("form.profile");
+}).controller("formController",function($scope){
+	$scope.formData={};
+	$scope.processForm=function(){
+		alert("awesome");
+	};
+});
